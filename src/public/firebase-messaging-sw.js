@@ -12,6 +12,7 @@ firebase.initializeApp({
     measurementId: "G-GWPD6550Z3"
 });
 
+const messaging = firebase.messaging()
 
 self.addEventListener('notificationclick', function(event) {
    event.notification.close();
@@ -23,20 +24,20 @@ self.addEventListener('notificationclick', function(event) {
 
 
 
-firebase.messaging.onBackgroundMessage(function(payload) {
+messaging.onBackgroundMessage(function(payload) {
     console.log(
         "[firebase-messaging-sw.js] Received background message ",
         payload,
     );
     // Customize notification here
-    const notificationTitle = "Background Message Title";
-    const notificationOptions = {
-        body: "Background Message body.",
-        icon: "/itwonders-web-logo.png",
-    };
+    // const notificationTitle = "Background Message Title";
+    // const notificationOptions = {
+    //     body: "Background Message body.",
+    //     icon: "/itwonders-web-logo.png",
+    // };
 
-    return self.registration.showNotification(
-        notificationTitle,
-        notificationOptions,
-    );
+    // return self.registration.showNotification(
+    //     notificationTitle,
+    //     notificationOptions,
+    // );
 });
