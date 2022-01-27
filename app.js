@@ -20,3 +20,11 @@ app.use('/api',routes);
 app.listen(port,function(){
     console.log(`Example app listening at http://localhost:${port}`)
 })
+
+if('serviceWorker' in navigator) { 
+    navigator.serviceWorker.register('./firebase-messaging-sw.js')
+  .then(function(registration) {
+   console.log("Service Worker Registered");
+    messaging.useServiceWorker(registration);  
+    }); 
+}

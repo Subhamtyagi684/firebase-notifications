@@ -10,7 +10,7 @@ firebase.initializeApp({
 
 if (firebase.messaging.isSupported()){
     const messaging = firebase.messaging();
-    navigator.serviceWorker.register('firebase-messaging-sw.js').then((registration) => {
+    navigator.serviceWorker.register('firebase-messaging-sw.js',{ scope: '/' }).then((registration) => {
         messaging.useServiceWorker(registration);
         messaging.requestPermission().then(function() {
             console.log('Notification Permission Granted!');
