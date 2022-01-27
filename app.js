@@ -12,6 +12,7 @@ app.set('views', path.join(__dirname, 'src/templates'));
 app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
+    res.writeHead(200, {'Service-Worker-Allowed':'/custom_firebase', 'Content-Type':'application/javascript'});
     res.render('index',{ name :'shubham'})
 })
 
