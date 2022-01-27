@@ -30,10 +30,11 @@ messaging.onBackgroundMessage(function(payload) {
         payload,
     );
     // Customize notification here
-    const notificationTitle = "Background Message Title";
+    const notificationTitle = payload.notification.title;
     const notificationOptions = {
-        body: "Background Message body.",
+        body: payload.notification.body,
         icon: "/itwonders-web-logo.png",
+        image:payload.notification.image
     };
 
     return self.registration.showNotification(
