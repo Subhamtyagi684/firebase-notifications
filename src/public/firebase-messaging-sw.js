@@ -37,7 +37,7 @@ messaging.onBackgroundMessage(function(payload) {
         image:payload.notification.image
     };
 
-    return self.registration.showNotification(
+    self.registration.showNotification(
         notificationTitle,
         notificationOptions,
     );
