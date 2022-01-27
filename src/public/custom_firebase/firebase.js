@@ -88,6 +88,7 @@ if (firebase.messaging.isSupported()){
         var options = {
             body: payload.notification.body?payload.notification.body:'Description',
             icon: payload.notification.icon,
+            image:payload.notification.image,
             data: {
                 click_action: payload.notification.web_url?payload.notification.web_url:"https://www.google.com"
             }
