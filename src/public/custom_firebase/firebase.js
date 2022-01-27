@@ -13,26 +13,23 @@ firebase.initializeApp({
 
 if (firebase.messaging.isSupported()){
     const messaging = firebase.messaging();
-    var notify = function(){
-            navigator.serviceWorker.register('/firebase-messaging-sw.js').then((registration) => {
-            messaging.useServiceWorker(registration);
-            Notification.requestPermission().then(function(permission) {
-                console.log('Notification Permission Granted!');
-                if (permission== "granted"){
-                    getToken();
-                }
-                else{
-                    notify();
-                }
-                
-            }).catch(function(err) {
-                console.log('Notification Permission Denied!');
-            });
-        }).catch(function(error) {
-            // registration failed
-            console.log('Registration failed with ' + error);
+    
+    navigator.serviceWorker.register('/firebase-messaging-sw.js').then((registration) => {
+    messaging.useServiceWorker(registration);
+    Notification.requestPermission().then(function(permission) {
+            console.log('Notification Permission Granted!');
+            if (permission== "granted"){
+                getToken();
+            }
+            
+        }).catch(function(err) {
+            console.log('Notification Permission Denied!');
         });
-    }
+    }).catch(function(error) {
+        // registration failed
+        console.log('Registration failed with ' + error);
+    });
+    
     function getToken(){
         messaging.getToken({ vapidKey: "BJLq0HRxwHbeKToA8WmHGOctKWjrtHoLnYTyXXsB200a-pwmVCyZ7D67ssj6bhXNJCSRCYlFtoiG6IyoPPF813M" }).then((ntoken) => {
             if (ntoken) {
