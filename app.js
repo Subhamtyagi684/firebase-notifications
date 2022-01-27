@@ -12,7 +12,7 @@ app.set('views', path.join(__dirname, 'src/templates'));
 app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
-    // res.render('index',{ name :'shubham'})
+    res.render('index',{ name :'shubham'})
 })
 
 app.use('/api',routes);
