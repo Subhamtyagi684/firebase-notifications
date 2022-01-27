@@ -19,12 +19,10 @@ self.addEventListener('notificationclick', function(event) {
    event.waitUntil(
        clients.openWindow(on_click)
    )
-});ss
+});
 
 
-// firebase.messaging();
-
-// const messaging = firebase.messaging();
+const messaging = firebase.messaging();
 
 // messaging.onBackgroundMessage((payload) => {
 //     console.log('[firebase-messaging-sw.js] Received background message ', payload);
@@ -41,18 +39,18 @@ self.addEventListener('notificationclick', function(event) {
 //       notificationOptions);
 //   });
 
-  const messaging = firebase.messaging();
+  // const messaging = firebase.messaging();
 
   // [START messaging_on_background_message]
-  messaging.onBackgroundMessage((payload) => {
-    console.log('[firebase-messaging-sw.js] Received background message ', payload);
-    // Customize notification here
-    const notificationTitle = 'Background Message Title';
-    const notificationOptions = {
-      body: 'Background Message body.',
-      icon: '/firebase-logo.png'
-    };
+  // messaging.onBackgroundMessage((payload) => {
+  //   console.log('[firebase-messaging-sw.js] Received background message ', payload);
+  //   // Customize notification here
+  //   const notificationTitle = 'Background Message Title';
+  //   const notificationOptions = {
+  //     body: 'Background Message body.',
+  //     icon: '/firebase-logo.png'
+  //   };
   
-    self.registration.showNotification(notificationTitle,
-      notificationOptions);
-  });
+  //   self.registration.showNotification(notificationTitle,
+  //     notificationOptions);
+  // });

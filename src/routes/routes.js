@@ -13,7 +13,7 @@ router.post('/sendnotification',function(req,res){
     var fcm_tokens = ['fxwenWhiKdqFDyxSe3PIKz:APA91bE9-CroQ8TH4HwWd_vCbOdXvHi5Sxtk49HMDDb1h2E3GzsKGI2JmTK9ZUdukaL8uw-hZC-qWpngWJvdkGdxffyaHTlmhFA9624lfa109Wm1YZ4W-4SgY79BSqoCzW23vXG4P0Dv','fycp14feH71RLvfF78_AoC:APA91bEl2THXMbNM4BSZBhg65jpnaR70SzfUoQN3VhgXrMZLwadrb7GtEATLWJmqQ0YgTfirtIfM1vUuidXY1sv2H2my3Q7SgLxGea35OUF4umzIrr9dfVJdRPrPUmLlfcQuoKqrncSM' ];
     var notification_body = {
         'notification': notification,
-        'registration_ids': fcm_tokens,
+        'to': fcm_tokens,
     };
     const postData = JSON.stringify(notification_body)
     axios.post('https://fcm.googleapis.com/fcm/send',postData,{
