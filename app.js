@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
 const routes = require('./src/routes/routes');
-const firebase = require('firebase')
 
 const port = process.env.PORT || 5001;
 app.use(bodyParser.json());
