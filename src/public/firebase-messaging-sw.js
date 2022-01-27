@@ -20,5 +20,4 @@ self.addEventListener('notificationclick', function(event) {
    )
 });
 
-
-firebase.messaging();
+const messaging = firebase.messaging();
