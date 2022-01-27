@@ -22,9 +22,8 @@ self.addEventListener('notificationclick', function(event) {
 });
 
 
-const messaging = firebase.messaging();
 
-messaging.onBackgroundMessage(function(payload) {
+firebase.messaging.onBackgroundMessage(function(payload) {
     console.log(
         "[firebase-messaging-sw.js] Received background message ",
         payload,
