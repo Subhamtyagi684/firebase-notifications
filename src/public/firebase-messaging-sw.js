@@ -12,8 +12,6 @@ firebase.initializeApp({
     measurementId: "G-GWPD6550Z3"
 });
 
-const messaging = firebase.messaging()
-
 self.addEventListener('notificationclick', function(event) {
    event.notification.close();
    var on_click = event.notification.image;
