@@ -1,39 +1,58 @@
-firebase.initializeApp({
-    apiKey: "AIzaSyD85gYt_5ldJnQE3-3VNWUqSXJ_YISvwLI",
-    authDomain: "website-61ecc.firebaseapp.com",
-    projectId: "website-61ecc",
-    storageBucket: "website-61ecc.appspot.com",
-    messagingSenderId: "765645921368",
-    appId: "1:765645921368:web:4ddfb22c00ae7344b03e2d",
-    measurementId: "G-GWPD6550Z3"
-});
+// firebase.initializeApp({
+//     apiKey: "AIzaSyD85gYt_5ldJnQE3-3VNWUqSXJ_YISvwLI",
+//     authDomain: "website-61ecc.firebaseapp.com",
+//     projectId: "website-61ecc",
+//     storageBucket: "website-61ecc.appspot.com",
+//     messagingSenderId: "765645921368",
+//     appId: "1:765645921368:web:4ddfb22c00ae7344b03e2d",
+//     measurementId: "G-GWPD6550Z3"
+// });
 
-if (firebase.messaging.isSupported()){
-    const messaging = firebase.messaging();
-    navigator.serviceWorker.register('/custom_firebase/firebase-messaging-sw.js',{ scope: '/custom_firebase' }).then((registration) => {
-        messaging.useServiceWorker(registration);
-        messaging.requestPermission().then(function() {
-            console.log('Notification Permission Granted!');
-            messaging.getToken({ vapidKey: "BJLq0HRxwHbeKToA8WmHGOctKWjrtHoLnYTyXXsB200a-pwmVCyZ7D67ssj6bhXNJCSRCYlFtoiG6IyoPPF813M" }).then((ntoken) => {
-                if (ntoken) {
-                    console.log(ntoken);
-                    sendTokenToServer(ntoken);
-                } else {
-                    console.log('No registration token available. Request permission to generate one.');
-                    setTokenSentToServer(false);
-                }
-            }).catch((err) => {
-                console.log('An error occurred while retrieving token. ', err);
-                setTokenSentToServer(false);
-            });
-        }).catch(function(err) {
-            console.log('Notification Permission Denied!');
-        });
-    }).catch(function(error) {
-        // registration failed
-        console.log('Registration failed with ' + error);
-    });
-
+// if (firebase.messaging.isSupported()){
+//     const messaging = firebase.messaging();
+//     navigator.serviceWorker.register('/custom_firebase/firebase-messaging-sw.js',{ scope: '/custom_firebase' }).then((registration) => {
+//         messaging.useServiceWorker(registration);
+//         messaging.requestPermission().then(function() {
+//             console.log('Notification Permission Granted!');
+//             messaging.getToken({ vapidKey: "BJLq0HRxwHbeKToA8WmHGOctKWjrtHoLnYTyXXsB200a-pwmVCyZ7D67ssj6bhXNJCSRCYlFtoiG6IyoPPF813M" }).then((ntoken) => {
+//                 if (ntoken) {
+//                     console.log(ntoken);
+//                     sendTokenToServer(ntoken);
+//                 } else {
+//                     console.log('No registration token available. Request permission to generate one.');
+//                     setTokenSentToServer(false);
+//                 }
+//             }).catch((err) => {
+//                 console.log('An error occurred while retrieving token. ', err);
+//                 setTokenSentToServer(false);
+//             });
+//         }).catch(function(err) {
+//             console.log('Notification Permission Denied!');
+//         });
+//     }).catch(function(error) {
+//         // registration failed
+//         console.log('Registration failed with ' + error);
+//     });
+// if (firebase.messaging.isSupported()){
+//     const messaging = firebase.messaging();
+//     messaging.requestPermission().then(function() {
+//         console.log('Notification Permission Granted!');
+//         messaging.getToken({ vapidKey: "BJLq0HRxwHbeKToA8WmHGOctKWjrtHoLnYTyXXsB200a-pwmVCyZ7D67ssj6bhXNJCSRCYlFtoiG6IyoPPF813M" }).then((ntoken) => {
+//             if (ntoken) {
+//                 console.log(ntoken);
+//                 sendTokenToServer(ntoken);
+//             } else {
+//                 console.log('No registration token available. Request permission to generate one.');
+//                 setTokenSentToServer(false);
+//             }
+//         }).catch((err) => {
+//             console.log('An error occurred while retrieving token. ', err);
+//             setTokenSentToServer(false);
+//         });
+//     }).catch(function(err) {
+//         console.log('Notification Permission Denied!');
+//     });
+// }
 
 function sendTokenToServer(ntoken) {
     if (!isTokenSentToServer()) {
@@ -72,26 +91,35 @@ function setTokenSentToServer(sent) {
 }
 
 
-messaging.onMessage( function(payload) {
-    console.log('++++++++here+++++++++',payload)
-    var title = payload.notification.title?payload.notification.title:'Title';
-    var options = {
-        body: payload.notification.body?payload.notification.body:'Description',
-        icon: payload.notification.icon,
-        image: payload.notifiscation.image,
-        data: {
-            click_action: payload.notification.web_url?payload.notification.web_url:"https://www.google.com"
-        }
-    };
-    var notification = new Notification(title, options);
-    notification.onclick = function(event) {
-        event.preventDefault(); // prevent the browser from focusing the Notification's tab
-        window.open(event.currentTarget.data.click_action, '_blank');
-        notification.close();
-    };
-});
+// messaging.onMessage( function(payload) {
+//     console.log('++++++++here+++++++++',payload)
+//     var title = payload.notification.title?payload.notification.title:'Title';
+//     var options = {
+//         body: payload.notification.body?payload.notification.body:'Description',
+//         icon: payload.notification.icon,
+//         image: payload.notifiscation.image,
+//         data: {
+//             click_action: payload.notification.web_url?payload.notification.web_url:"https://www.google.com"
+//         }
+//     };
+//     var notification = new Notification(title, options);
+//     notification.onclick = function(event) {
+//         event.preventDefault(); // prevent the browser from focusing the Notification's tab
+//         window.open(event.currentTarget.data.click_action, '_blank');
+//         notification.close();
+//     };
+// });
 
-}
-else{
-    console.log('FCM is not supported')
+// }
+// else{
+//     console.log('FCM is not supported')
+// }
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('../firebase-messaging-sw.js')
+    .then(function(registration) {
+    console.log('Registration successful, scope is:', registration.scope);
+    }).catch(function(err) {
+    console.log('Service worker registration failed, error:', err);
+    });
 }

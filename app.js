@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
 const routes = require('./src/routes/routes');
+const firebase = require('firebase')
 
 const port = process.env.PORT || 5001;
 app.use(bodyParser.json());
@@ -12,7 +13,6 @@ app.set('views', path.join(__dirname, 'src/templates'));
 app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
-    res.writeHead(200, {'Service-Worker-Allowed':'/custom_firebase', 'Content-Type':'application/javascript'});
     res.render('index',{ name :'shubham'})
 })
 
@@ -21,3 +21,5 @@ app.use('/api',routes);
 app.listen(port,function(){
     console.log(`Example app listening at http://localhost:${port}`)
 })
+
+
