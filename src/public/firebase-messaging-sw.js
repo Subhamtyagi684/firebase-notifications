@@ -21,36 +21,20 @@ self.addEventListener('notificationclick', function(event) {
    )
 });
 
-firebase.messaging();
-// const messaging = firebase.messaging();
+// firebase.messaging();
+const messaging = firebase.messaging();
 
-// messaging.onBackgroundMessage((payload) => {
-//     console.log('[firebase-messaging-sw.js] Received background message ', payload);
-//     var notificationTitle = payload.notification.title?payload.notification.title:'Title';
-//     var notificationOptions = {
-//         body: payload.notification.body?payload.notification.body:'Description',
-//         icon: payload.notification.icon,
-//         image: payload.notification.image,
-//         data: {
-//             click_action: payload.notification.web_url?payload.notification.web_url:"https://www.google.com"
-//         }
-//     };
-//     return self.registration.showNotification(notificationTitle,
-//       notificationOptions);
-//   });
-
-  // const messaging = firebase.messaging();
-
-  // [START messaging_on_background_message]
-  // messaging.onBackgroundMessage((payload) => {
-  //   console.log('[firebase-messaging-sw.js] Received background message ', payload);
-  //   // Customize notification here
-  //   const notificationTitle = 'Background Message Title';
-  //   const notificationOptions = {
-  //     body: 'Background Message body.',
-  //     icon: '/firebase-logo.png'
-  //   };
-  
-  //   self.registration.showNotification(notificationTitle,
-  //     notificationOptions);
-  // });
+messaging.onBackgroundMessage((payload) => {
+    console.log('[firebase-messaging-sw.js] Received background message ', payload);
+    var notificationTitle = payload.notification.title?payload.notification.title:'Title';
+    var notificationOptions = {
+        body: payload.notification.body?payload.notification.body:'Description',
+        icon: payload.notification.icon,
+        image: payload.notification.image,
+        data: {
+            click_action: payload.notification.web_url?payload.notification.web_url:"https://www.google.com"
+        }
+    };
+    return self.registration.showNotification(notificationTitle,
+      notificationOptions);
+  });
