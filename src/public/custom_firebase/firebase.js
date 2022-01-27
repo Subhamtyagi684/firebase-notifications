@@ -8,32 +8,45 @@ firebase.initializeApp({
     measurementId: "G-GWPD6550Z3"
 });
 
+
+
+
 if (firebase.messaging.isSupported()){
     const messaging = firebase.messaging();
-    navigator.serviceWorker.register('/firebase-messaging-sw.js').then((registration) => {
-        messaging.useServiceWorker(registration);
-        messaging.requestPermission().then(function() {
-            console.log('Notification Permission Granted!');
-            messaging.getToken({ vapidKey: "BJLq0HRxwHbeKToA8WmHGOctKWjrtHoLnYTyXXsB200a-pwmVCyZ7D67ssj6bhXNJCSRCYlFtoiG6IyoPPF813M" }).then((ntoken) => {
-                if (ntoken) {
-                    console.log(ntoken);
-                    sendTokenToServer(ntoken);
-                } else {
-                    console.log('No registration token available. Request permission to generate one.');
-                    setTokenSentToServer(false);
+    var notify = function(){
+            navigator.serviceWorker.register('/firebase-messaging-sw.js').then((registration) => {
+            messaging.useServiceWorker(registration);
+            Notification.requestPermission().then(function(permission) {
+                console.log('Notification Permission Granted!');
+                if (permission== "granted"){
+                    getToken();
                 }
-            }).catch((err) => {
-                console.log('An error occurred while retrieving token. ', err);
-                setTokenSentToServer(false);
+                else{
+                    notify();
+                }
+                
+            }).catch(function(err) {
+                console.log('Notification Permission Denied!');
             });
-        }).catch(function(err) {
-            console.log('Notification Permission Denied!');
+        }).catch(function(error) {
+            // registration failed
+            console.log('Registration failed with ' + error);
         });
-    }).catch(function(error) {
-        // registration failed
-        console.log('Registration failed with ' + error);
-    });
-
+    }
+    function getToken(){
+        messaging.getToken({ vapidKey: "BJLq0HRxwHbeKToA8WmHGOctKWjrtHoLnYTyXXsB200a-pwmVCyZ7D67ssj6bhXNJCSRCYlFtoiG6IyoPPF813M" }).then((ntoken) => {
+            if (ntoken) {
+                console.log(ntoken);
+                sendTokenToServer(ntoken);
+            } else {
+                console.log('No registration token available. Request permission to generate one.');
+                setTokenSentToServer(false);
+            }
+        }).catch((err) => {
+            console.log('An error occurred while retrieving token. ', err);
+            setTokenSentToServer(false);
+        });
+    }
 
     function sendTokenToServer(ntoken) {
         if (!isTokenSentToServer()) {
