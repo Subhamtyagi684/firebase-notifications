@@ -12,7 +12,7 @@ router.post('/send-to-group',function(req,res){
         'image':'https://images.news18.com/ibnlive/uploads/2021/08/shah-rukh-khan-01.jpg',
         'click_action':'https://www.hocalwire.com'
     };
-    var fcm_tokens = "fQyMfvH75Ik8euuvuf8qQk:APA91bEwusFR2no3hRxtNEIB1mKcppCx0hLwsbknUd3fQXfD9vjahj_aFfEEIKqwNaO2hv0vVNVSgmRV-zcavX4XNYwwNvb0qSa43nJNl5-10rIQhISy8dCJNYzWR6ujJlERkPRoEiVw"
+    var fcm_tokens = "fycp14feH71RLvfF78_AoC:APA91bGixzCfMKlA4gcV02oafEbvM7F4YW2LJlGW80LzNdt8stuNsxFVy-lqdezgan_UHYJJe5AAWQ0DOk616lrdNFRqIoc1zcjcpoogLpuKQJFp59zhshjz3eQNk4tj6DMZDb2zmFzZ"
     var notification_body = {
         'notification': notification,
         'to': fcm_tokens,
@@ -67,7 +67,7 @@ router.post('/create-new-group',function(req,res){
     var notification_body  = {
         "operation": "create",
         "notification_key_name": "appUser-Chris",
-        "registration_ids": ["fQyMfvH75Ik8euuvuf8qQk:APA91bEwusFR2no3hRxtNEIB1mKcppCx0hLwsbknUd3fQXfD9vjahj_aFfEEIKqwNaO2hv0vVNVSgmRV-zcavX4XNYwwNvb0qSa43nJNl5-10rIQhISy8dCJNYzWR6ujJlERkPRoEiVw","c-KenttXsxf87s_5E6h-ot:APA91bGh6UPN5MI-A2ZC0h-GOdyRzrbj7gZoY1jEZGBe8Hx1XkoCDJX81N55vdYENFgwX6an0dNRRifJGIkDo9I5pr8ILlmnyWhfrstEYQYieVhFy3kys1q_v_3Uu0LHdpGk9KB80HQd"]
+        "registration_ids": ["fycp14feH71RLvfF78_AoC:APA91bGixzCfMKlA4gcV02oafEbvM7F4YW2LJlGW80LzNdt8stuNsxFVy-lqdezgan_UHYJJe5AAWQ0DOk616lrdNFRqIoc1zcjcpoogLpuKQJFp59zhshjz3eQNk4tj6DMZDb2zmFzZ","c-KenttXsxf87s_5E6h-ot:APA91bGh6UPN5MI-A2ZC0h-GOdyRzrbj7gZoY1jEZGBe8Hx1XkoCDJX81N55vdYENFgwX6an0dNRRifJGIkDo9I5pr8ILlmnyWhfrstEYQYieVhFy3kys1q_v_3Uu0LHdpGk9KB80HQd"]
     }
 
     var data = JSON.stringify(notification_body)
@@ -80,7 +80,7 @@ router.post('/create-new-group',function(req,res){
     }).then(function(result){
         res.status(200).send(result);
     }).catch(function(err){
-        res.status(500).send(err.message);
+        res.status(500).send(err);
     });
 })
 
