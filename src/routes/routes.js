@@ -10,7 +10,7 @@ router.post('/send-to-group',function(req,res){
         'image':'https://images.news18.com/ibnlive/uploads/2021/08/shah-rukh-khan-01.jpg',
         'click_action':'https://www.hocalwire.com'
     };
-    var fcm_tokens = ""
+    var fcm_tokens = "fQyMfvH75Ik8euuvuf8qQk:APA91bEwusFR2no3hRxtNEIB1mKcppCx0hLwsbknUd3fQXfD9vjahj_aFfEEIKqwNaO2hv0vVNVSgmRV-zcavX4XNYwwNvb0qSa43nJNl5-10rIQhISy8dCJNYzWR6ujJlERkPRoEiVw"
     var notification_body = {
         'notification': notification,
         'to': fcm_tokens,
