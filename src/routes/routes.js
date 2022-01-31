@@ -78,7 +78,7 @@ router.post('/create-new-group',function(req,res){
     }).then(function(result){
         res.status(200).send(result);
     }).catch(function(err){
-        res.status(500).send(err.response.data.error.message);
+        res.status(500).send(err.message);
     });
 })
 
