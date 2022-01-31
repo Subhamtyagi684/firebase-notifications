@@ -73,10 +73,9 @@ function setTokenSentToServer(sent) {
 
 
 messaging.onMessage( function(payload) {
-    console.log('+++++onmessage handler+++++',payload);
-    var title = payload.notification.title?payload.notification.title:'Title';
+    var title = payload.notification.title;
     var options = {
-        body: payload.notification.body?payload.notification.body:'Description',
+        body: payload.notification.body,
         icon: payload.notification.icon,
         image: payload.notification.image,
         click_action: payload.notification.click_action
