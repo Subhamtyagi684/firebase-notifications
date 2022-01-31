@@ -2,6 +2,8 @@ const express = require('express');
 const router  = express.Router();
 const axios = require('axios');
 const server_key = "AAAAskQNnFg:APA91bG61IxsYO3OtGmL0JZmX1qZ37nrYLX6sh5tT8Yy-AVfNohH0ukaTQZvx5CuNCUwZn6ftmgND5EEofmozHDe3zyvPTuYiVGFBkfLKPJoti4JzKPwgFauJ4PSgUv5ZBdRegpWKxi1";
+const api_key = "AIzaSyD85gYt_5ldJnQE3-3VNWUqSXJ_YISvwLI"
+
 
 router.post('/send-to-group',function(req,res){
     var notification = {
@@ -71,7 +73,7 @@ router.post('/create-new-group',function(req,res){
     var data = JSON.stringify(notification_body)
     axios.post('https://fcm.googleapis.com/fcm/notification',data,{
         "headers":{
-            "Authorization":"key="+server_key,
+            "Authorization":"key="+api_key,
             "Content-Type":"application/json",
             "project_id":"website-61ecc"
         }
@@ -87,7 +89,7 @@ router.post('/get-group',function(req,res){
     
     axios.get('https://fcm.googleapis.com/fcm/notification?notification_key_name=appUser-Chris',{
         'headers':{
-            'Authorization':"key="+server_key,
+            'Authorization':"key="+api_key,
             'Content-Type':'application/json',
             "project_id":"website-61ecc"
 
@@ -110,7 +112,7 @@ router.post('/add-to-group',function(req,res){
     var data = JSON.stringify(notification_body)
     axios.post('https://fcm.googleapis.com/fcm/notification',data,{
         "headers":{
-            "Authorization":"key="+server_key,
+            "Authorization":"key="+api_key,
             "Content-Type":"application/json",
             "project_id":"website-61ecc"
         }
@@ -126,7 +128,7 @@ router.post('/remove-from-group',function(req,res){
     
     axios.get('https://fcm.googleapis.com/fcm/notification?notification_key_name=appUser-Chris',data,{
         'headers':{
-            'Authorization':"key="+server_key,
+            'Authorization':"key="+api_key,
             'Content-Type':'application/json',
             "project_id":"website-61ecc"
 
