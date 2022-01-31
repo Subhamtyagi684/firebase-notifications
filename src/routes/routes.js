@@ -65,7 +65,7 @@ router.post('/create-new-group',function(req,res){
     var notification_body  = {
         "operation": "create",
         "notification_key_name": "appUser-Chris",
-        "registration_ids": ["fycp14feH71RLvfF78_AoC:APA91bFYx4OkHBaT8u-z3B1xbbmeC4yu9nhCiuoRzrVJstN_kfK3clx_Md9PzczuFIfycVg-u8mUJKajA06ONRnFTxASbEmXB86px9aLl74V49bg0BQrvy1ePCMSJdoWF3_2NQVMkZvG"]
+        "registration_ids": ["fQyMfvH75Ik8euuvuf8qQk:APA91bEwusFR2no3hRxtNEIB1mKcppCx0hLwsbknUd3fQXfD9vjahj_aFfEEIKqwNaO2hv0vVNVSgmRV-zcavX4XNYwwNvb0qSa43nJNl5-10rIQhISy8dCJNYzWR6ujJlERkPRoEiVw","c-KenttXsxf87s_5E6h-ot:APA91bGh6UPN5MI-A2ZC0h-GOdyRzrbj7gZoY1jEZGBe8Hx1XkoCDJX81N55vdYENFgwX6an0dNRRifJGIkDo9I5pr8ILlmnyWhfrstEYQYieVhFy3kys1q_v_3Uu0LHdpGk9KB80HQd"]
     }
 
     var data = JSON.stringify(notification_body)
@@ -73,7 +73,7 @@ router.post('/create-new-group',function(req,res){
         "headers":{
             "Authorization":"key="+server_key,
             "Content-Type":"application/json",
-            "project_id":"765645921368"
+            "project_id":"website-61ecc"
         }
     }).then(function(result){
         res.status(200).send(result);
@@ -82,13 +82,14 @@ router.post('/create-new-group',function(req,res){
     });
 })
 
+
 router.post('/get-group',function(req,res){
     
     axios.get('https://fcm.googleapis.com/fcm/notification?notification_key_name=appUser-Chris',{
         'headers':{
             'Authorization':"key="+server_key,
             'Content-Type':'application/json',
-            "project_id":"765645921368"
+            "project_id":"website-61ecc"
 
         }
     }).then(function(data){
@@ -98,13 +99,36 @@ router.post('/get-group',function(req,res){
     });
 })
 
+router.post('/add-to-group',function(req,res){
+    
+    var notification_body  = {
+        "operation": "add",
+        "notification_key_name": "appUser-Chris",
+        "registration_ids": ["fQyMfvH75Ik8euuvuf8qQk:APA91bEwusFR2no3hRxtNEIB1mKcppCx0hLwsbknUd3fQXfD9vjahj_aFfEEIKqwNaO2hv0vVNVSgmRV-zcavX4XNYwwNvb0qSa43nJNl5-10rIQhISy8dCJNYzWR6ujJlERkPRoEiVw"]
+    }
+
+    var data = JSON.stringify(notification_body)
+    axios.post('https://fcm.googleapis.com/fcm/notification',data,{
+        "headers":{
+            "Authorization":"key="+server_key,
+            "Content-Type":"application/json",
+            "project_id":"website-61ecc"
+        }
+    }).then(function(result){
+        res.status(200).send(result);
+    }).catch(function(err){
+        res.status(500).send(err);
+    });
+})
+
+
 router.post('/remove-from-group',function(req,res){
     
     axios.get('https://fcm.googleapis.com/fcm/notification?notification_key_name=appUser-Chris',data,{
         'headers':{
             'Authorization':"key="+server_key,
             'Content-Type':'application/json',
-            "project_id":"765645921368"
+            "project_id":"website-61ecc"
 
         }
     }).then(function(data){
