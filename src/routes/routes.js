@@ -12,10 +12,10 @@ router.post('/send-to-group',function(req,res){
         'image':'https://images.news18.com/ibnlive/uploads/2021/08/shah-rukh-khan-01.jpg',
         'click_action':'https://www.hocalwire.com'
     };
-    var fcm_tokens = "fycp14feH71RLvfF78_AoC:APA91bGixzCfMKlA4gcV02oafEbvM7F4YW2LJlGW80LzNdt8stuNsxFVy-lqdezgan_UHYJJe5AAWQ0DOk616lrdNFRqIoc1zcjcpoogLpuKQJFp59zhshjz3eQNk4tj6DMZDb2zmFzZ"
+    var fcm_tokens = ["fycp14feH71RLvfF78_AoC:APA91bF2gxB-FhnYmDbm3ucRDjjoUcqV3vwR0_nSINYykKB6pZdt2vTRBTlGbAIfUxhrS7HY4FMKpOSCzMWKLIT_bPqJrsmhzSIuMsBpbGkOTeumOttWf9JHsRffeekCGkPnUn7n2OAP"]
     var notification_body = {
         'notification': notification,
-        'to': fcm_tokens,
+        'registration_ids': fcm_tokens,
     };
     const postData = JSON.stringify(notification_body)
     axios.post('https://fcm.googleapis.com/fcm/send',postData,{
