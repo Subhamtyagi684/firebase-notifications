@@ -73,12 +73,12 @@ function setTokenSentToServer(sent) {
 
 
 messaging.onMessage( function(payload) {
-    console.log("++++++++on message+++++++")
+    console.log("++++++++on message+++++++",payload)
     var title = payload.notification.title;
     var options = {
         body: payload.notification.body,
-        icon: payload.notification.icon,
         image: payload.notification.image,
+        icon:payload.notification.icon,
         click_action: payload.notification.click_action
     };
     var notification = new Notification(title, options);
