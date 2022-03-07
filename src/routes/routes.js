@@ -300,7 +300,7 @@ router.post('/remove-topics',function(req,res){
 router.post('/send-notification',function(req,res){
 
     var notification = {
-        "registration_ids":["fLOE2t9nsBECAJO1mY3p4f:APA91bF77K0Uv_UEqr6AvtOVN3bXXbMRd5RDgPSIWT-3znGcKqAzXCP-UVmeuvnlXPLQpWZi3iCOjhAn1JEiu721qgldnxhq-yhC9sRMfONdKP3KvAMUOobiMab-NsMb1NiHAOKEnWb8"],
+        "registration_ids":["e-xUcNQmrRNVtP1oJC7uCa:APA91bG1mL6ZQle6IWt4DfAT0km27FRpfz26vU5sc_DVnBnfGTh7TPHixDNRDHc_anpVzXLX3JNPWRqOj16Z0ERy-MbH-X_h83kn7OCcLJWzXRt-uO3lu6DPcuFShfBfzMn6cUAGPc3M"],
         "priority":"HIGH",
         "notification":{
             "body":"This is a test FCM notification message from shubham!",
