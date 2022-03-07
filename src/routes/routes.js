@@ -1,17 +1,13 @@
 const express = require('express');
 const router  = express.Router();
 const axios = require('axios');
-const server_key = "AAAAskQNnFg:APA91bG61IxsYO3OtGmL0JZmX1qZ37nrYLX6sh5tT8Yy-AVfNohH0ukaTQZvx5CuNCUwZn6ftmgND5EEofmozHDe3zyvPTuYiVGFBkfLKPJoti4JzKPwgFauJ4PSgUv5ZBdRegpWKxi1";
+const server_key = "AAAAr3qk0P0:APA91bGKrUwTRHLx1167FyBRkk--ZOvd6RjoskCVgiTe2i3kdv-Lfqpd-0uPs_qVijr3fr6W9k1rz5gRjQwzEQZstJj2YjlEhvsxHLx3Y3p7XMmiZOU8nGHR9yS9BEyWyRWFxRLHGdV3";
 const api_key = "AIzaSyD85gYt_5ldJnQE3-3VNWUqSXJ_YISvwLI"
-const bearer_token = "ya29.A0ARrdaM9N5qPrOIYtB87QO79xzPPj7JgJy2hgAhazhZYLj3znzQ0eBac57mLKGgivI5FdqAqjyceatak1CVUK68c0X0_Q9iT40E9IvMns5hez97qUW_K5z5rgA6Q9gDq5RI_e-6YCy0vUJZR_2QCSJu72wltA"
-
-
-
 
 const groupHeaders = {
     "Content-Type":"application/json",
     "Authorization":"key="+server_key,
-    "project_id":"765645921368"
+    "project_id":"753676898557"
 };
 
 
@@ -304,7 +300,7 @@ router.post('/remove-topics',function(req,res){
 router.post('/send-notification',function(req,res){
 
     var notification = {
-        "registration_ids":["fycp14feH71RLvfF78_AoC:APA91bF2gxB-FhnYmDbm3ucRDjjoUcqV3vwR0_nSINYykKB6pZdt2vTRBTlGbAIfUxhrS7HY4FMKpOSCzMWKLIT_bPqJrsmhzSIuMsBpbGkOTeumOttWf9JHsRffeekCGkPnUn7n2OAP","token2"],
+        "registration_ids":["fLOE2t9nsBECAJO1mY3p4f:APA91bF77K0Uv_UEqr6AvtOVN3bXXbMRd5RDgPSIWT-3znGcKqAzXCP-UVmeuvnlXPLQpWZi3iCOjhAn1JEiu721qgldnxhq-yhC9sRMfONdKP3KvAMUOobiMab-NsMb1NiHAOKEnWb8"],
         "priority":"HIGH",
         "notification":{
             "body":"This is a test FCM notification message from shubham!",

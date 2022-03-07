@@ -1,20 +1,23 @@
-firebase.initializeApp({
-    apiKey: "AIzaSyD85gYt_5ldJnQE3-3VNWUqSXJ_YISvwLI",
-    authDomain: "website-61ecc.firebaseapp.com",
-    projectId: "website-61ecc",
-    storageBucket: "website-61ecc.appspot.com",
-    messagingSenderId: "765645921368",
-    appId: "1:765645921368:web:4ddfb22c00ae7344b03e2d",
-    measurementId: "G-GWPD6550Z3"
-});
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBDQjRGoc1Eb0rZt5QLaZSaoTEtX2apL7k",
+  authDomain: "fir-project-affb7.firebaseapp.com",
+  projectId: "fir-project-affb7",
+  storageBucket: "fir-project-affb7.appspot.com",
+  messagingSenderId: "753676898557",
+  appId: "1:753676898557:web:9bda4e81a74703c4c66e94",
+  measurementId: "G-VB6Z9QN1G1"
+};
+firebase.initializeApp(firebaseConfig);
 
 if (firebase.messaging.isSupported()){
     const messaging = firebase.messaging();
-    navigator.serviceWorker.register('/firebase-messaging-sw.js').then((registration) => {
+    navigator.serviceWorker.register('/js/sw.js').then((registration) => {
         messaging.useServiceWorker(registration);
         messaging.requestPermission().then(function() {
             console.log('Notification Permission Granted!');
-            messaging.getToken({ vapidKey: "BJLq0HRxwHbeKToA8WmHGOctKWjrtHoLnYTyXXsB200a-pwmVCyZ7D67ssj6bhXNJCSRCYlFtoiG6IyoPPF813M" }).then((ntoken) => {
+            messaging.getToken({ vapidKey: "BEwZLZAXyfUGCQmEfS8To-es8P65QRn2UKvBE7koxtpWTDYeKXuEgDLId-WWuCyaGlyCY2ey4wkJ5RxVrvJ-lgs" }).then((ntoken) => {
                 if (ntoken) {
                     console.log(ntoken);
                     sendTokenToServer(ntoken);
@@ -73,12 +76,15 @@ function setTokenSentToServer(sent) {
 
 
 messaging.onMessage( function(payload) {
-    var title = payload.notification.title;
+    console.log('++++++++here+++++++++',payload)
+    var title = payload.notification.title?payload.notification.title:'Title';
     var options = {
-        body: payload.notification.body,
+        body: payload.notification.body?payload.notification.body:'Description',
+        icon: payload.notification.icon,
         image: payload.notification.image,
-        icon:payload.notification.icon,
-        click_action: payload.notification.click_action
+        data: {
+            click_action: payload.notification.web_url?payload.notification.web_url:"https://www.google.com"
+        }
     };
     var notification = new Notification(title, options);
     notification.onclick = function(event) {
