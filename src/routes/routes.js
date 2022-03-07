@@ -52,7 +52,7 @@ const groupHeaders = {
 
 
 // --------------------------------------------------------------------------------------
-//                                 GROUPS
+//                                 GROUPS API
 // --------------------------------------------------------------------------------------
 
 
@@ -150,7 +150,7 @@ router.post('/remove-from-group',function(req,res){
 
 
 // --------------------------------------------------------------------------------------
-//                                 TOPICS
+//                                 TOPICS API
 // --------------------------------------------------------------------------------------
 
 router.post('/token-details',function(req,res){
@@ -295,16 +295,16 @@ router.post('/remove-topics',function(req,res){
 
 
 // --------------------------------------------------------------------------------------
-//                                 SEND NOTIFICATIONS
+//                                 SEND NOTIFICATIONS API
 // --------------------------------------------------------------------------------------
 
 
-// send notifications to a group
+// send notifications
 
 router.post('/send-notification',function(req,res){
 
     var notification = {
-        "to":"fycp14feH71RLvfF78_AoC:APA91bF2gxB-FhnYmDbm3ucRDjjoUcqV3vwR0_nSINYykKB6pZdt2vTRBTlGbAIfUxhrS7HY4FMKpOSCzMWKLIT_bPqJrsmhzSIuMsBpbGkOTeumOttWf9JHsRffeekCGkPnUn7n2OAP",
+        "registration_ids":["fycp14feH71RLvfF78_AoC:APA91bF2gxB-FhnYmDbm3ucRDjjoUcqV3vwR0_nSINYykKB6pZdt2vTRBTlGbAIfUxhrS7HY4FMKpOSCzMWKLIT_bPqJrsmhzSIuMsBpbGkOTeumOttWf9JHsRffeekCGkPnUn7n2OAP","token2"],
         "priority":"HIGH",
         "notification":{
             "body":"This is a test FCM notification message from shubham!",
