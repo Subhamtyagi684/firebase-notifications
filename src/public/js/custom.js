@@ -78,7 +78,6 @@ if(firebase.messaging)
 
 
     messaging.onMessage( function(payload) {
-        console.log('++++++++here+++++++++',payload)
         var title = payload.notification.title?payload.notification.title:'Title';
         var options = {
             body: payload.notification.body?payload.notification.body:'Description',
