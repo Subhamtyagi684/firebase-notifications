@@ -1,0 +1,77 @@
+doctype html
+head
+    meta(charset='utf-8')
+    title My AMP Page
+    link(rel='canonical' href='/')
+    meta(name='viewport' content='width=device-width')
+    style(amp-boilerplate='').
+        body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}
+    noscript
+        style(amp-boilerplate='').
+            body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}
+    script(async='' custom-element='amp-web-push' src='https://cdn.ampproject.org/v0/amp-web-push-0.1.js')
+    script(async='' custom-element='amp-form' src='https://cdn.ampproject.org/v0/amp-form-0.1.js')
+    script(async='' src='https://cdn.ampproject.org/v0.js')
+
+    style(amp-custom='').
+        h1 {
+            margin: 1rem;
+        }
+        body {
+            background-color: blue;
+        }
+        amp-web-push-widget button.subscribe {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 2px;
+            border: 0;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 10px 15px;
+            cursor: pointer;
+            outline: none;
+            font-size: 15px;
+            font-weight: 400;
+            background: #4A90E2;
+            color: white;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5);
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        amp-web-push-widget button.subscribe:active {
+            transform: scale(0.9);
+        }
+
+        amp-web-push-widget button.unsubscribe {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 45px;
+            border: 0;
+            margin: 0;
+            cursor: pointer;
+            outline: none;
+            font-size: 15px;
+            font-weight: 400;
+            background: transparent;
+            color: #B1B1B1;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            background-color: #eee;
+            border-radius: 2px;
+        }
+
+
+        amp-web-push-widget button.unsubscribe:active {
+            transform: scale(0.9);
+        }
+body
+    h1#hello Hello AMPHTML World!
+    amp-web-push#amp-web-push(layout='nodisplay' helper-iframe-url='https://hidden-garden-00755.herokuapp.com/amp-helper' permission-dialog-url='https://hidden-garden-00755.herokuapp.com/amp-permission' service-worker-url='https://hidden-garden-00755.herokuapp.com/sw.js')
+
+    .web-push
+        // A subscription widget
+        amp-web-push-widget(visibility='unsubscribed' layout='fixed' width='250' height='45')
+            button.subscribe(on='tap:amp-web-push.subscribe') Subscribe to Notifications
+        // An unsubscription widget
+        amp-web-push-widget(visibility='subscribed' layout='fixed' width='250' height='45')
+            button.unsubscribe(on='tap:amp-web-push.unsubscribe') Unsubscribe from Notifications

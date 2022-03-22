@@ -15,7 +15,7 @@ if(firebase.messaging)
 {
     if (firebase.messaging.isSupported()){
         const messaging = firebase.messaging();
-        navigator.serviceWorker.register('/js/sw.js').then((registration) => {
+        navigator.serviceWorker.register('/sw.js?v=1',{scope: "/"}).then((registration) => {
             messaging.useServiceWorker(registration);
             messaging.requestPermission().then(function() {
                 console.log('Notification Permission Granted!');
@@ -28,7 +28,7 @@ if(firebase.messaging)
                         setTokenSentToServer(false);
                     }
                 }).catch((err) => {
-                    console.log('An error occurred while retrieving token. ', err);
+                    console.log('An error occurred while retrieving token. ');
                     setTokenSentToServer(false);
                 });
             }).catch(function(err) {

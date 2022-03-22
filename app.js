@@ -17,6 +17,18 @@ app.get('/', (req, res) => {
     res.render('index',{ name :'shubham'})
 })
 
+app.get('/amp',(req,res)=>{
+    res.render('amp-index')
+})
+
+app.get('/amp-helper',(req,res)=>{
+    res.render('amp-helper-iframe')
+})
+
+app.get('/amp-permission',(req,res)=>{
+    res.render('amp-permission-dialogue')
+})
+
 app.use('/api',routes);
 
 
