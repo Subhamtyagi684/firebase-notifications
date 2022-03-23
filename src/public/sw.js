@@ -185,7 +185,7 @@ function onMessageReceivedSubscribe() {
     .then((pushSubscription) => {
       if(pushSubscription.endpoint){
         messaging.getToken({ vapidKey: "BEwZLZAXyfUGCQmEfS8To-es8P65QRn2UKvBE7koxtpWTDYeKXuEgDLId-WWuCyaGlyCY2ey4wkJ5RxVrvJ-lgs" }).then((ntoken) => {
-          if (ntoken) {
+          if (ntoken){
               sendTokenToServer(ntoken);
           } else {
               console.log('No registration token available. Request permission to generate one.');
