@@ -139,6 +139,32 @@ function onMessageReceivedSubscriptionState() {
   Subscribes the visitor to push.
   The broadcast value is null (not used in the AMP page).
  */
+
+
+function sendTokenToServer(ntoken) {
+      console.log('Sending token to server...');
+      // var data = {};
+      // var url = "";
+      // $.ajax({
+      //     url: url,
+      //     type: "POST",
+      //     data: JSON.stringify(data),
+      //     dataType: "text",
+      //     processData: false,
+      //     contentType: "application/json; charset=utf-8",
+      //     success: function (data, status, jqXHR) {
+      //         console.log("successfully retrieved token");
+      //     },
+      //     error: function (err) {
+      //         console.log(err);
+      //     },
+      //     complete: function (jqXHR, status) {
+      //         console.log("request complete");
+      //     }
+      // });
+      console.log('sent to server...',ntoken)
+}
+
 function onMessageReceivedSubscribe() {
   /*
     If you're integrating amp-web-push with an existing service worker, use your
@@ -160,14 +186,13 @@ function onMessageReceivedSubscribe() {
       if(pushSubscription.endpoint){
         messaging.getToken({ vapidKey: "BEwZLZAXyfUGCQmEfS8To-es8P65QRn2UKvBE7koxtpWTDYeKXuEgDLId-WWuCyaGlyCY2ey4wkJ5RxVrvJ-lgs" }).then((ntoken) => {
           if (ntoken) {
-              console.log(ntoken);
               sendTokenToServer(ntoken);
           } else {
               console.log('No registration token available. Request permission to generate one.');
           }
-      }).catch((err) => {
-          console.log('An error occurred while retrieving token. ');
-      });
+        }).catch((err) => {
+            console.log('An error occurred while retrieving token. ');
+        });
       }
     })
     
