@@ -232,3 +232,14 @@ function sendTokenToServer(ntoken) {
       console.log('Token already sent to server so won\'t send it again ');
   }
 }
+
+
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    self.skipWaiting()
+  );
+});
+
+self.addEventListener('activate', function(event) {
+  event.waitUntil(self.clients.claim());
+});
