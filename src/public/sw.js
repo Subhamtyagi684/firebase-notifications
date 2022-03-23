@@ -1,7 +1,7 @@
 importScripts('https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.3.0/firebase-messaging.js');
 
-var isTokenSentToServer = false;
+
   const firebaseConfig = {
       apiKey: "AIzaSyBDQjRGoc1Eb0rZt5QLaZSaoTEtX2apL7k",
       authDomain: "fir-project-affb7.firebaseapp.com",
@@ -156,12 +156,11 @@ function onMessageReceivedSubscribe() {
       userVisibleOnly: true,
       applicationServerKey: 'BEwZLZAXyfUGCQmEfS8To-es8P65QRn2UKvBE7koxtpWTDYeKXuEgDLId-WWuCyaGlyCY2ey4wkJ5RxVrvJ-lgs',
     })
-    .then((info) => {
-      console.log('Inside amp service worker');
-      messaging.getToken({ vapidKey: "BEwZLZAXyfUGCQmEfS8To-es8P65QRn2UKvBE7koxtpWTDYeKXuEgDLId-WWuCyaGlyCY2ey4wkJ5RxVrvJ-lgs" }).then((ntoken) => {
+    .then((pushSubscription) => {
+      if(pushSubscription.endpoint){
+        messaging.getToken({ vapidKey: "BEwZLZAXyfUGCQmEfS8To-es8P65QRn2UKvBE7koxtpWTDYeKXuEgDLId-WWuCyaGlyCY2ey4wkJ5RxVrvJ-lgs" }).then((ntoken) => {
           if (ntoken) {
               console.log(ntoken);
-              broadcastReply(WorkerMessengerCommand.AMP_SUBSCRIBE, null);
               sendTokenToServer(ntoken);
           } else {
               console.log('No registration token available. Request permission to generate one.');
@@ -169,8 +168,11 @@ function onMessageReceivedSubscribe() {
       }).catch((err) => {
           console.log('An error occurred while retrieving token. ');
       });
-      // IMPLEMENT: Forward the push subscription to your server here
-      
+      }
+    })
+    
+    .then(()=>{
+      broadcastReply(WorkerMessengerCommand.AMP_SUBSCRIBE, null);
     });
 }
 
@@ -205,41 +207,3 @@ function broadcastReply(command, payload) {
   });
 }
 
-function sendTokenToServer(ntoken) {
-  if (!isTokenSentToServer) {
-      console.log('Sending token to server...');
-      // var data = {};
-      // var url = "";
-      // $.ajax({
-      //     url: url,
-      //     type: "POST",
-      //     data: JSON.stringify(data),
-      //     dataType: "text",
-      //     processData: false,
-      //     contentType: "application/json; charset=utf-8",
-      //     success: function (data, status, jqXHR) {
-      //         console.log("successfully retrieved token");
-      //     },
-      //     error: function (err) {
-      //         console.log(err);
-      //     },
-      //     complete: function (jqXHR, status) {
-      //         console.log("request complete");
-      //     }
-      // });
-      isTokenSentToServer = true;
-  } else {
-      console.log('Token already sent to server so won\'t send it again ');
-  }
-}
-
-
-self.addEventListener('install', function(event) {
-  event.waitUntil(
-    self.skipWaiting()
-  );
-});
-
-self.addEventListener('activate', function(event) {
-  event.waitUntil(self.clients.claim());
-});
