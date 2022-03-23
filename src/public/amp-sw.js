@@ -129,9 +129,7 @@ function onMessageReceivedSubscribe() {
       userVisibleOnly: true,
       applicationServerKey: 'BEwZLZAXyfUGCQmEfS8To-es8P65QRn2UKvBE7koxtpWTDYeKXuEgDLId-WWuCyaGlyCY2ey4wkJ5RxVrvJ-lgs',
     })
-    .then((info) => {
-      console.log('++++shubham++++')
-      console.log(info)
+    .then(() => {
       // IMPLEMENT: Forward the push subscription to your server here
       broadcastReply(WorkerMessengerCommand.AMP_SUBSCRIBE, null);
     });
