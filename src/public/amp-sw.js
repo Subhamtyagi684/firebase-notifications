@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
- importScripts('https://cdn.rawgit.com/jakearchibald/idb/97e4e878/lib/idb.js');
-
  const applicationServerPublicKey =
    'BEwZLZAXyfUGCQmEfS8To-es8P65QRn2UKvBE7koxtpWTDYeKXuEgDLId-WWuCyaGlyCY2ey4wkJ5RxVrvJ-lgs';
  const convertedVapidKey = urlB64ToUint8Array(applicationServerPublicKey);
