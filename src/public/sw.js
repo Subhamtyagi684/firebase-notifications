@@ -1,7 +1,7 @@
 importScripts('https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.3.0/firebase-messaging.js');
 
-
+var isTokenSentToServer = false;
   const firebaseConfig = {
       apiKey: "AIzaSyBDQjRGoc1Eb0rZt5QLaZSaoTEtX2apL7k",
       authDomain: "fir-project-affb7.firebaseapp.com",
@@ -157,21 +157,20 @@ function onMessageReceivedSubscribe() {
       applicationServerKey: 'BEwZLZAXyfUGCQmEfS8To-es8P65QRn2UKvBE7koxtpWTDYeKXuEgDLId-WWuCyaGlyCY2ey4wkJ5RxVrvJ-lgs',
     })
     .then((info) => {
-      console.log('Notification Permission Granted!');
+      console.log('Inside amp service worker');
       messaging.getToken({ vapidKey: "BEwZLZAXyfUGCQmEfS8To-es8P65QRn2UKvBE7koxtpWTDYeKXuEgDLId-WWuCyaGlyCY2ey4wkJ5RxVrvJ-lgs" }).then((ntoken) => {
           if (ntoken) {
               console.log(ntoken);
+              broadcastReply(WorkerMessengerCommand.AMP_SUBSCRIBE, null);
               sendTokenToServer(ntoken);
           } else {
               console.log('No registration token available. Request permission to generate one.');
-              setTokenSentToServer(false);
           }
       }).catch((err) => {
           console.log('An error occurred while retrieving token. ');
-          setTokenSentToServer(false);
       });
       // IMPLEMENT: Forward the push subscription to your server here
-      broadcastReply(WorkerMessengerCommand.AMP_SUBSCRIBE, null);
+      
     });
 }
 
@@ -207,7 +206,7 @@ function broadcastReply(command, payload) {
 }
 
 function sendTokenToServer(ntoken) {
-  if (!isTokenSentToServer()) {
+  if (!isTokenSentToServer) {
       console.log('Sending token to server...');
       // var data = {};
       // var url = "";
@@ -228,16 +227,8 @@ function sendTokenToServer(ntoken) {
       //         console.log("request complete");
       //     }
       // });
-      setTokenSentToServer(true);
+      isTokenSentToServer = true;
   } else {
       console.log('Token already sent to server so won\'t send it again ');
   }
-}
-
-function isTokenSentToServer() {
-  return window.localStorage.getItem('sentToServer') == 1;
-}
-
-function setTokenSentToServer(sent) {
-  window.localStorage.setItem('sentToServer', sent ? 1 : 0);
 }
