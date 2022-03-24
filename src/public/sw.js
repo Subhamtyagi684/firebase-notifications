@@ -26,4 +26,10 @@ const messaging = firebase.messaging();
       self.registration.showNotification(notificationTitle,notificationOptions);
     });
 
- 
+    self.addEventListener('install', function(event) {
+      event.waitUntil(self.skipWaiting());
+    });
+    
+    self.addEventListener('activate', function(event) {
+      event.waitUntil(self.clients.claim());
+    });
