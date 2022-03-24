@@ -1,4 +1,5 @@
- /**
+
+/**
  * Copyright 2017 The AMP HTML Authors. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -111,32 +112,6 @@ function onMessageReceivedSubscriptionState() {
   Subscribes the visitor to push.
   The broadcast value is null (not used in the AMP page).
  */
-
-
-function sendTokenToServer(ntoken) {
-      console.log('Sending token to server...');
-      // var data = {};
-      // var url = "";
-      // $.ajax({
-      //     url: url,
-      //     type: "POST",
-      //     data: JSON.stringify(data),
-      //     dataType: "text",
-      //     processData: false,
-      //     contentType: "application/json; charset=utf-8",
-      //     success: function (data, status, jqXHR) {
-      //         console.log("successfully retrieved token");
-      //     },
-      //     error: function (err) {
-      //         console.log(err);
-      //     },
-      //     complete: function (jqXHR, status) {
-      //         console.log("request complete");
-      //     }
-      // });
-      console.log('sent to server...',ntoken)
-}
-
 function onMessageReceivedSubscribe() {
   /*
     If you're integrating amp-web-push with an existing service worker, use your
@@ -154,23 +129,10 @@ function onMessageReceivedSubscribe() {
       userVisibleOnly: true,
       applicationServerKey: 'BEwZLZAXyfUGCQmEfS8To-es8P65QRn2UKvBE7koxtpWTDYeKXuEgDLId-WWuCyaGlyCY2ey4wkJ5RxVrvJ-lgs',
     })
-    .then((pushSubscription) => {
-      if(pushSubscription.endpoint){
-        messaging.getToken({ vapidKey: "BEwZLZAXyfUGCQmEfS8To-es8P65QRn2UKvBE7koxtpWTDYeKXuEgDLId-WWuCyaGlyCY2ey4wkJ5RxVrvJ-lgs" }).then((ntoken) => {
-          if (ntoken){
-              sendTokenToServer(ntoken);
-          } else {
-              console.log('No registration token available. Request permission to generate one.');
-          }
-        }).catch((err) => {
-            console.log('An error occurred while retrieving token. ');
-        });
-      }
-    })
-    
-    .then(()=>{
+    .then((info) => {
+      console.log(info)
+      // IMPLEMENT: Forward the push subscription to your server here
       broadcastReply(WorkerMessengerCommand.AMP_SUBSCRIBE, null);
-      console.log('subscribed.')
     });
 }
 
@@ -205,10 +167,30 @@ function broadcastReply(command, payload) {
   });
 }
 
-self.addEventListener('install', function(event) {
-  event.waitUntil(self.skipWaiting());
-});
+// importScripts('https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js');
+// importScripts('https://www.gstatic.com/firebasejs/8.3.0/firebase-messaging.js');
 
-self.addEventListener('activate', function(event) {
-  event.waitUntil(self.clients.claim());
-});
+
+//   const firebaseConfig = {
+//       apiKey: "AIzaSyBDQjRGoc1Eb0rZt5QLaZSaoTEtX2apL7k",
+//       authDomain: "fir-project-affb7.firebaseapp.com",
+//       projectId: "fir-project-affb7",
+//       storageBucket: "fir-project-affb7.appspot.com",
+//       messagingSenderId: "753676898557",
+//       appId: "1:753676898557:web:9bda4e81a74703c4c66e94",
+//       measurementId: "G-VB6Z9QN1G1"
+//     };
+// firebase.initializeApp(firebaseConfig);
+
+
+// const messaging = firebase.messaging();
+
+//  messaging.onBackgroundMessage((payload) => {
+//       const notificationTitle = payload.notification.title;
+//       const notificationOptions = {
+//         body: payload.notification.body,
+//         icon: payload.notification.icon
+//       };
+    
+//       self.registration.showNotification(notificationTitle,notificationOptions);
+//     });
