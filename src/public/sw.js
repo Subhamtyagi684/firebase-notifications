@@ -198,6 +198,7 @@ function onMessageReceivedSubscribe() {
     
     .then(()=>{
       broadcastReply(WorkerMessengerCommand.AMP_SUBSCRIBE, null);
+      console.log('worked.')
     });
 }
 
