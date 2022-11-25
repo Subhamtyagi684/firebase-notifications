@@ -298,20 +298,13 @@ router.post('/remove-topics',function(req,res){
 // send notifications
 
 router.post('/send-notification',function(req,res){
-
     if(!req.body.token){
-        res.status(400).send("Please pass token in array");
+        res.status(400).send("Please pass token");
         return;
     }
     var token = req.body.token;
-    try{
-        token = JSON.parse(token);
-    }catch{
-        res.status(400).send("Please check your array");
-        return;
-    }
     var notification = {
-        "registration_ids":token,
+        "to":`${token}`,
         "priority":"HIGH",
         "notification":{
             "body":"This is a test FCM notification message from shubham!",
