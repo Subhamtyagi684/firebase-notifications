@@ -299,8 +299,19 @@ router.post('/remove-topics',function(req,res){
 
 router.post('/send-notification',function(req,res){
 
+    if(!req.body.token){
+        res.status(400).send("Please pass token in array");
+        return;
+    }
+    var token = req.body.token;
+    try{
+        token = JSON.parse(token);
+    }catch{
+        res.status(400).send("Please check your array");
+        return;
+    }
     var notification = {
-        "registration_ids":["fLOE2t9nsBECAJO1mY3p4f:APA91bHGK_Xckn3vb85bOd8qXM0h2eWVVR4Nr0CvXuGCPP-4ZRHPDE0sCqiRwhVduwwGndOB7HET1aa9QQbkJtOsQy_mQobC4f0f8inhYc10SZFBlvlR9IWMtwlb21qOu4vR_iSMaJq8"],
+        "registration_ids":token,
         "priority":"HIGH",
         "notification":{
             "body":"This is a test FCM notification message from shubham!",
